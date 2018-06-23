@@ -35,9 +35,16 @@ for name in page_names:
         #this is where you generate the new name for the picture
         #remove the /pages/directory reference
         new_name = name.replace("pages/", "")
-        #folder + name of post + number
+
+        #folder + name of post + number for saving
         matchmod_jpg = "images/" + new_name + str(filecounter) + ".jpg"
         matchmod_png = "images/" + new_name + str(filecounter) + ".png"
+
+        #folder + name of post + number for linking
+        #I have no idea why this one needs the /
+        matchmod_jpg_link = "/images/" + new_name + str(filecounter) + ".jpg"
+        matchmod_png_link = "/images/" + new_name + str(filecounter) + ".png"
+
         #increase the number by one
         filecounter += 1
 
@@ -46,7 +53,7 @@ for name in page_names:
             #downloads the file and saves it at matchmod location
             urllib.request.urlretrieve(match, matchmod_jpg)
             #replace the image link with the matchmod
-            newstring = target_contents.replace(match, matchmod_jpg)
+            newstring = target_contents.replace(match, matchmod_jpg_link)
             #update the string with the change or it won't stick
             target_contents = newstring
 
@@ -55,7 +62,7 @@ for name in page_names:
             #downloads the file and saves it at matchmod location
             urllib.request.urlretrieve(match, matchmod_png)
             #replace the image link with the matchmod
-            newstring = target_contents.replace(match, matchmod_png)
+            newstring = target_contents.replace(match, matchmod_png_link)
             #update the string with the change or it won't stick
             target_contents = newstring
 
