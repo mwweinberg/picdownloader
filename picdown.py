@@ -48,23 +48,27 @@ for name in page_names:
         #increase the number by one
         filecounter += 1
 
-        #if the file is a jpg
-        if 'jpg' in match:
-            #downloads the file and saves it at matchmod location
-            urllib.request.urlretrieve(match, matchmod_jpg)
-            #replace the image link with the matchmod
-            newstring = target_contents.replace(match, matchmod_jpg_link)
-            #update the string with the change or it won't stick
-            target_contents = newstring
+        try:
+            #if the file is a jpg
+            if 'jpg' in match:
+                #downloads the file and saves it at matchmod location
+                urllib.request.urlretrieve(match, matchmod_jpg)
+                #replace the image link with the matchmod
+                newstring = target_contents.replace(match, matchmod_jpg_link)
+                #update the string with the change or it won't stick
+                target_contents = newstring
 
-        #if it is a png
-        if 'png' in match:
-            #downloads the file and saves it at matchmod location
-            urllib.request.urlretrieve(match, matchmod_png)
-            #replace the image link with the matchmod
-            newstring = target_contents.replace(match, matchmod_png_link)
-            #update the string with the change or it won't stick
-            target_contents = newstring
+            #if it is a png
+            if 'png' in match:
+                #downloads the file and saves it at matchmod location
+                urllib.request.urlretrieve(match, matchmod_png)
+                #replace the image link with the matchmod
+                newstring = target_contents.replace(match, matchmod_png_link)
+                #update the string with the change or it won't stick
+                target_contents = newstring
+
+        except:
+            print("**********error with URL: " + match)
 
 
 
